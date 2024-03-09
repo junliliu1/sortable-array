@@ -57,6 +57,7 @@ public class SortableArray<T extends Comparable<T>> {
         System.out.println("Sorted float array:");
         sortableFloatArray.print();
 
+
         // Run the unit test for sortFloats
         sortableFloatArray.testSortFloats();
 
