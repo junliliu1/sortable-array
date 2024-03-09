@@ -3,7 +3,6 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Comparator;
 
-
 public class SortableArray<T extends Comparable<T>> {
     private T[] array;
 
@@ -13,6 +12,21 @@ public class SortableArray<T extends Comparable<T>> {
 
     public void sort() {
         Arrays.sort(array);
+    }
+  
+    public void sortStrings() {
+        Arrays.sort(array, (a, b) -> ((String) a).compareTo((String) b));
+    }
+  
+    @Test
+    public void testSortStrings() {
+        String[] stringArray = {"banana", "apple", "cherry", "date"};
+        SortableArray<String> sortableStringArray = new SortableArray<>(stringArray);
+
+        sortableStringArray.sortStrings();
+
+        String[] expectedArray = {"apple", "banana", "cherry", "date"};
+        Assert.assertArrayEquals(expectedArray, stringArray);
     }
 
     public void sortFloats() {
@@ -65,8 +79,6 @@ public class SortableArray<T extends Comparable<T>> {
         System.out.println(Arrays.toString(array));
     }
 
-  
-
     public static void main(String[] args) {
          // Test sorting integers
         Integer[] intArray = {5, 2, 8, 1, 9};
@@ -80,6 +92,7 @@ public class SortableArray<T extends Comparable<T>> {
         System.out.println("Sorted array:");
         sortableIntArray.print();
       
+        // Run the unit tests
         sortableIntArray.testSortIntegers();
       
         // Test sorting floats
@@ -94,8 +107,23 @@ public class SortableArray<T extends Comparable<T>> {
         System.out.println("Sorted float array:");
         sortableFloatArray.print();
 
-
         // Run the unit test for sortFloats
         sortableFloatArray.testSortFloats();
+  
+          // Test sorting strings
+        String[] stringArray = {"banana", "apple", "cherry", "date"};
+        SortableArray<String> sortableStringArray = new SortableArray<>(stringArray);
+
+        System.out.println("Original string array:");
+        sortableStringArray.print();
+
+        sortableStringArray.sortStrings();
+
+        System.out.println("Sorted string array:");
+        sortableStringArray.print();
+
+        // Run the unit tests
+        sortableStringArray.testSortStrings();
+
     }
 }
